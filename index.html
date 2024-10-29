@@ -31,16 +31,9 @@
       console.log('END_onScriptError')
     }
 
-    function testError() {
+    function test() {
       console.log('START_testError')
-      const errorEvent = new ErrorEvent("error", {
-        message: "自定義的錯誤訊息",
-        filename: "自定義文件.js",
-        lineno: 42,
-        colno: 21,
-        error: new Error("這是自定義的錯誤對象")
-      });
-      window.dispatchEvent(errorEvent);
+      console.log(track.dataError)
       console.log('END_testError')
     }
   </script>
@@ -51,7 +44,7 @@
   <!-- End Google Tag Manager (noscript) -->
   <button onclick="onScriptLoadFailed()">script加载失败</button>
   <button onclick="onScriptError()">script运行错误</button>
-  <button onclick="testError()">測試錯誤</button>
+  <button onclick="test()">測試錯誤</button>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
