@@ -56,7 +56,7 @@ var track;
       if (!event.detail) {
         const { message, filename, lineno, colno, error } = event;
         const detail = { message, filename, lineno, colno, error };
-        if (!(message && error) || true) {
+        if (!(message && error)) {
           const { tagName, src } = event.target;
           detail.tagName = tagName
           detail.src = src

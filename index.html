@@ -1,51 +1,70 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue + TS</title>
-    <script src="./bin/track.js"></script>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KZ8KSQGM');</script>
-    <!-- End Google Tag Manager -->
-  </head>
-  <script>
-    track.init("trackExample", "skin001", 0, 0);
-    function onScriptLoadFailed() {
-      console.log('START_LoadFailed')
-      const scriptElement = document.createElement("script");
-      scriptElement.src = "./bin/track.xxx.js";
-      document.body.appendChild(scriptElement);
-      console.log('END_LoadFailed')
-    }
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + Vue + TS</title>
+  <script src="./bin/track.js"></script>
+  <!-- Google Tag Manager -->
+  <script>(function(w, d, s, l, i) {
+    w[l] = w[l] || []
+    w[l].push({
+      'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    })
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''
+    j.async = true
+    j.src =
+      'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+    f.parentNode.insertBefore(j, f)
+  })(window, document, 'script', 'dataLayer', 'GTM-KZ8KSQGM')</script>
+  <!-- End Google Tag Manager -->
+</head>
+<script>
+  track.init('trackExample', 'skin001', 0, 0)
 
-    function onScriptError() {
-      console.log('START_onScriptError')
-      const badCode = "const s;";
-      eval(badCode);
-      console.log('END_onScriptError')
-    }
+  function onScriptLoadFailed() {
+    console.log('START_LoadFailed')
+    const scriptElement = document.createElement('script')
+    scriptElement.src = './bin/track.xxx.js'
+    document.body.appendChild(scriptElement)
+    console.log('END_LoadFailed')
+  }
 
-    function test() {
-      console.log('START_testError')
-      console.log(track.dataError)
-      console.log('END_testError')
-    }
-  </script>
-  <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZ8KSQGM"
-                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <button onclick="onScriptLoadFailed()">script加载失败</button>
-  <button onclick="onScriptError()">script运行错误</button>
-  <button onclick="test()">測試錯誤</button>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+  function onScriptError() {
+    console.log('START_onScriptError')
+    window.specialVV = 'hereIsMySpecialVar'
+    var notByWindow = 'thisIsNotByWindow'
+    const badCode = 'const s;'
+    eval(badCode)
+    console.log('END_onScriptError')
+  }
+
+  function test() {
+    console.log('START_testError')
+
+    // dataLayer.push({
+    //   event: 'gtm.pageError',
+    //   'gtm.errorMessage': 'this is my errorMMM',
+    //   'gtm.errorUrl': 'this is my errorURL',
+    //   'gtm.errorLineNumber': 5
+    // })
+    console.log('END_testError')
+  }
+</script>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZ8KSQGM"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<button onclick="onScriptLoadFailed()">script加载失败</button>
+<button onclick="onScriptError()">script运行错误</button>
+<button onclick="test()" id="auror">測試錯誤</button>
+<div id="app"></div>
+<script type="module" src="/src/main.ts"></script>
+</body>
 </html>
